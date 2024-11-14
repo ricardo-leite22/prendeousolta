@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prende ou Solta?</title>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        #container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.8em;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        #description {
+            font-size: 1em;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        img {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            margin-bottom: 3px;
+            border-radius: 10px;
+        }
+        input[type="text"] {
+            padding: 12px;
+            font-size: 1.1em;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            width: 80%;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        .button {
+            padding: 12px 25px;
+            font-size: 1.1em;
+            margin: 10px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            background-color: #87CEFA;
+            color: #fff;
+        }
+        .button:hover {
+            background-color: #5aabd6;
+        }
+        #result {
+            font-size: 1.8em;
+            color: #333;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        #counter {
+            font-size: 0.9em;
+            color: #555;
+            margin-top: 20px;
+        }
+        #fruit-count {
+            font-size: 0.9em;
+            color: #888;
+            margin-top: 30px;
+        }
+    </style>
+    <script>
+        let clickCount = 0;
+        const foods = {
+            // Frutas
+            "banana": "solta",
+            "maçã": "prende",
+            "mamão": "solta",
+            "goiaba": "prende",
+            "abacaxi": "solta",
+            "pera": "solta",
+            "laranja": "solta",
+            "uva": "prende",
+            "melancia": "solta",
+            "manga": "prende",
+            "ameixa": "solta",
+            "morango": "prende",
+            "kiwi": "solta",
+            "jabuticaba": "prende",
+            "acerola": "solta",
+            "abacate": "solta",
+            "caju": "prende",
+            "carambola": "prende",
+            "pitanga": "solta",
+            "limão": "solta",
+            "coco": "solta",
+            "maracujá": "prende",
+            "graviola": "solta",
+            "jaca": "solta",
+            "framboesa": "solta",
+            "figo": "solta",
+            "caqui": "solta",
+            "tangerina": "solta",
+            "pêssego": "solta",
+            "melão": "solta",
+            // Legumes
+            "cenoura": "solta",
+            "beterraba": "solta",
+            "batata-doce": "prende",
+            "batata": "prende",
+            "chuchu": "solta",
+            "abobrinha": "solta",
+            "berinjela": "solta",
+            "pepino": "solta",
+            "inhame": "prende",
+            "mandioca": "prende",
+            "mandioquinha": "prende",
+            "quiabo": "solta",
+            "pimentão": "solta",
+            "tomate": "solta",
+            "cebola": "solta",
+            "alho": "solta",
+            "espinafre": "solta",
+            "couve": "solta",
+            "alface": "solta",
+            "brócolis": "solta",
+            "couve flor": "solta",
+            "ervilha": "solta",
+            "milho": "prende",
+            "repolho": "prende"
+        };
+
+        function checkFood() {
+            const foodName = document.getElementById("foodInput").value.toLowerCase();
+            const resultElement = document.getElementById("result");
+            const searchButton = document.getElementById("searchButton");
+
+            clickCount++;
+            document.getElementById("counter").innerText = `Número de vezes que você se preocupou com a sua alimentação: ${clickCount}`;
+
+            if (foods[foodName]) {
+                if (foods[foodName] === "solta") {
+                    resultElement.innerHTML = `Solta 💩`;
+                } else {
+                    resultElement.innerHTML = `Prende 🔒`;
+                }
+                searchButton.innerText = "Tente outra fruta ou legume";
+            } else {
+                resultElement.innerHTML = "Alimento não encontrado na nossa base de dados.";
+                searchButton.innerText = "Tente outra fruta ou legume";
+            }
+        }
+
+        function resetButtonText() {
+            document.getElementById("searchButton").innerText = "Prende ou Solta?";
+        }
+    </script>
+</head>
+<body>
+    <div id="container">
+        <img src="ps.jpg" alt="Imagem do site">
+        <h1>PRENDE OU SOLTA?</h1>
+        <div id="description">Mantenha uma alimentação saudável e equilibrada descobrindo quais frutas e legumes prendem ou soltam o seu intestino!</div>
+        
+        <input type="text" id="foodInput" placeholder="Digite o nome de uma fruta ou legume" oninput="resetButtonText()">
+        <button class="button" id="searchButton" onclick="checkFood()">Prende ou Solta?</button>
+        
+        <div id="result"></div>
+        <div id="counter">Número de vezes que você se preocupou com a sua alimentação: 0</div>
+        <div id="fruit-count">Alimentos cadastrados para pesquisa: 51</div>
+    </div>
+</body>
+</html>
